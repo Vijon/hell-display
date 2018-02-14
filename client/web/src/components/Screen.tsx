@@ -1,6 +1,7 @@
 import * as React from 'react';
 import glamorous from 'glamorous';
 import Message, { MessageClass } from './Message';
+import Text from './Text';
 
 interface Props {
     connected?: boolean;
@@ -33,6 +34,8 @@ const Styles = {
     splash: glamorous.h1(
         {
             gridArea: 'header',
+            fontSize: '4em',
+            textTransform: 'uppercase',
             color: '#ff0000'
         }
     ),
@@ -40,7 +43,8 @@ const Styles = {
         {
             gridArea: 'footer',
             padding: '1em 2em',
-            backgroundColor: 'orange'
+            fontSize: '2em',
+            color: '#fff'
         }
     ),
     message: glamorous.div(
@@ -58,7 +62,7 @@ class Screen extends React.Component<Props> {
         return (
           <Styles.screen>
             <Styles.splash>
-              Hell display
+                <Text id="welcome" force={0} />
             </Styles.splash>
             <Styles.message>
             {message &&
@@ -68,16 +72,16 @@ class Screen extends React.Component<Props> {
             <Styles.status>
                 <div className="status">
                 {incoming === true &&
-                <span>In ricezione!</span>
+                <span><Text id="incomingMsg" timed={true} /></span>
                 }
                 {!incoming && connected === undefined &&
-                <span>Ti stiamo connettendo da qualche parte.</span>
+                <span><Text id="connectingMsg" timed={true} /></span>
                 }
                 {!incoming && connected === true &&
-                <span>Connesso, è stata una tua scelta.</span>
+                <span><Text id="connectedMsg" timed={true} /></span>
                 }
                 {!incoming && connected === false &&
-                <span>Il server è esploso.</span>
+                <span><Text id="disconnectedMsg" timed={true} /></span>
                 }
                 </div>
             </Styles.status>

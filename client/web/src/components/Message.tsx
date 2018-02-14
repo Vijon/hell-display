@@ -1,5 +1,6 @@
 import * as React from 'react';
 import glamorous from 'glamorous';
+import Text from './Text';
 
 export interface MessageClass { // [TODO] same as server
     id: string;
@@ -34,7 +35,7 @@ class Message extends React.Component<Props> {
       window.open(message.url, 'streamer');
       return (
         <div className="message">
-          Ti ho aperto un link. Sei contento?
+          <Text id="urlOpen" />
         </div>
       );
     } else if (message.audio) {
@@ -58,7 +59,7 @@ class Message extends React.Component<Props> {
     } else {
       return (
         <div className="message">
-          <em>Qualcuno ha scritto:</em>
+          <em><Text id="someoneWrote" /></em>
           <Styles.quote>
             <strong>{message.text}</strong>
           </Styles.quote>
