@@ -50,7 +50,9 @@ const Styles = {
     message: glamorous.div(
         {
             gridArea: 'content',
-            textAlign: 'center'
+            textAlign: 'center',
+            color: '#fff',
+            fontSize: '2em',
         }
     ),
 };

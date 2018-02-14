@@ -20,7 +20,7 @@ const Styles = {
   ),
   quote: glamorous.blockquote(
       {
-          fontSize: '2em'
+          fontSize: '5em'
       }
   )
 };
