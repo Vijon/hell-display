@@ -14,7 +14,6 @@ bot.on('message', async (msg) => {
     let user = await Users.save( { id, name } );
     let message = await Message.parse( msg );
     await Web.broadcast( message, user );
-    console.log('broadcasted')
 });
 
 /*** WEBSERVER */

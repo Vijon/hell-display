@@ -13,12 +13,15 @@ interface State {
   incoming?: boolean;
   message?: MessageClass;
   playing?: boolean;
+  users?: number;
 }
 
 class App extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
-    this.state = {};
+    this.state = {
+      users: 0
+    };
   }
 
   _pause() {
@@ -40,6 +43,11 @@ class App extends React.Component<{}, State> {
       }, 3000);
       audio.play();
       console.log('broadcast', data);
+    });
+    socket.on('users:online', (users: number) => {
+      this.setState( {
+        users
+      });
     });
     socket.on('disconnect', () => {
       this.setState( { connected: false });

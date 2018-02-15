@@ -8,6 +8,7 @@ interface Props {
     incoming?: boolean;
     message?: MessageClass;
     playing?: boolean;
+    users?: number;
     onPause?: Function;
 }
 
@@ -57,11 +58,20 @@ const Styles = {
             fontSize: '2em',
         }
     ),
+    stats: glamorous.div(
+        {
+            position: 'absolute',
+            right: '1em',
+            bottom: '1em',
+            color: '#fff',
+            fontSize: '1.5em',
+        }
+    ),
 };
 
 class Screen extends React.Component<Props> {
     render() {
-        const { connected, incoming, message, playing, onPause } = this.props;
+        const { connected, incoming, message, playing, users, onPause } = this.props;
         
         return (
           <Styles.screen
@@ -93,6 +103,9 @@ class Screen extends React.Component<Props> {
                 }
                 </div>
             </Styles.status>
+            <Styles.stats>
+                {users} 😈
+            </Styles.stats>
           </Styles.screen>
         );
     }
