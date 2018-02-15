@@ -9,6 +9,8 @@ export interface MessageClass { // [TODO] same as server
     url?: string;
     audio?: string;
     image?: string;
+    video?: string;
+    embed?: string;
 }
 
 const Styles = {
@@ -21,6 +23,12 @@ const Styles = {
   quote: glamorous.blockquote(
       {
           fontSize: '5em'
+      }
+  ),
+  embed: glamorous.iframe(
+      {
+          width: '90vw',
+          height: '60vh'
       }
   )
 };
@@ -41,7 +49,7 @@ class Message extends React.Component<Props> {
     } else if (message.audio) {
       return (
         <div>
-          <audio autoPlay={true} preload="none">
+          <audio autoPlay={true} preload="auto">
             <source src={message.audio} type="audio/ogg" />
           </audio>
           <p>{message.text}</p>
@@ -53,6 +61,22 @@ class Message extends React.Component<Props> {
           <figure>
             <Styles.image src={message.image} />
           </figure>
+          <p>{message.text}</p>
+        </div>
+      );
+    } else if (message.video) {
+      return (
+        <div>
+          <video autoPlay={true} loop={true} preload="auto">
+            <source src={message.video} type="audio/ogg" />
+          </video>
+          <p>{message.text}</p>
+        </div>
+      );
+    } else if (message.embed) {
+      return (
+        <div>
+          <Styles.embed src={message.embed} frameBorder={'0'} />
           <p>{message.text}</p>
         </div>
       );

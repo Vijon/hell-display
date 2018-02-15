@@ -5,16 +5,24 @@ import { MessageClass } from './components/Message';
 
 const socket = io(`http://${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}`);
 
+import notification from './notification';
+const audio = new Audio(notification);
+
 interface State {
   connected?: boolean;
   incoming?: boolean;
   message?: MessageClass;
+  playing?: boolean;
 }
 
 class App extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {};
+  }
+
+  _pause() {
+    this.setState( { playing: !this.state.playing } );
   }
   
   componentDidMount() {
@@ -24,11 +32,13 @@ class App extends React.Component<{}, State> {
     socket.on('broadcast', (data: MessageClass)  => {
       this.setState( {
         incoming: true,
-        message: data
+        message: data,
+        playing: true
       });
       setTimeout(() => {
         this.setState({ incoming: false });
       }, 3000);
+      audio.play();
       console.log('broadcast', data);
     });
     socket.on('disconnect', () => {
@@ -38,7 +48,7 @@ class App extends React.Component<{}, State> {
 
   render() {
     return (
-      <Screen {...this.state} />
+      <Screen {...this.state} onPause={() => this._pause()} />
     );
   }
 }

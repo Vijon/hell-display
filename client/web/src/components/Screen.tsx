@@ -7,6 +7,8 @@ interface Props {
     connected?: boolean;
     incoming?: boolean;
     message?: MessageClass;
+    playing?: boolean;
+    onPause?: Function;
 }
 
 const Styles = {
@@ -59,15 +61,19 @@ const Styles = {
 
 class Screen extends React.Component<Props> {
     render() {
-        const { connected, incoming, message } = this.props;
+        const { connected, incoming, message, playing, onPause } = this.props;
         
         return (
-          <Styles.screen>
+          <Styles.screen
+            tabIndex={0}
+            onClick={() => { if (onPause) { onPause(); } }} 
+            onKeyDown={() => { if (onPause) { onPause(); } }}
+          >
             <Styles.splash>
-                <Text id="welcome" force={0} />
+                <Text id="welcome" force={0} timed={true} />
             </Styles.splash>
             <Styles.message>
-            {message &&
+            {message && playing &&
             <Message {...message} />
             }
             </Styles.message>
