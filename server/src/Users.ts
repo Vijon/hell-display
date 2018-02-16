@@ -35,6 +35,6 @@ export const save = (user: User) => {
                 flag: 'w+'
             });
         }
-        resolve();
+        resolve(user);
     });
 }

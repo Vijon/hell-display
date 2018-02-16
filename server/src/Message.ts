@@ -59,8 +59,7 @@ export const parse = ( msg ) => {
         const { message_id: id, text, date, entities } = msg;
 
         let result: Message;
-        result = { id, text, date }
-        console.log(msg)
+        result = { id, text, date };
 
         /** PARSING */
 

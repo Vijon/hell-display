@@ -1,8 +1,16 @@
 import * as http from "http";
 import * as Socket from "socket.io";
+import * as Rx from "rxjs";
 
-var server = http.createServer();
-var io = Socket(server);
+
+const server = http.createServer();
+const io = Socket(server);
+const stream = new Rx.Subject();
+const spreaded = Rx.Observable
+.zip(
+    stream,
+    Rx.Observable.interval( 5000 )
+);
 var users = 0;
 export const start = ( config ) => {
     io.on('connection', function(client){
@@ -12,13 +20,20 @@ export const start = ( config ) => {
         message('users:online');
     });
     server.listen(config.port);
-    console.log('connect', config.port)
+
+    spreaded.subscribe(
+        ( [ data, i ]) => {
+            const msg = data['msg'];
+            io.emit('broadcast', msg);
+            console.log('broadcast', msg, i)
+        }
+    );
 }
 
 export const broadcast = ( msg, user ) => {
     return new Promise( resolve => {
-        io.emit('broadcast', msg);
-        console.log('broadcast', msg, user)
+        stream.next( { msg, user } ); 
+        // console.log('received', msg, user)
         resolve();
     });
 }
@@ -28,7 +43,6 @@ export const message = (key) => {
         switch (key) {
             case 'users:online':
                 io.emit('users:online', users);
-                console.log('users:online', users)
             break;
         }
         resolve();
@@ -40,7 +54,6 @@ const onEvent = (data) => {
 }
 
 const onDisconnect = () => {
-    console.log('disconnect')
     users--;
     message('users:online');
 }
