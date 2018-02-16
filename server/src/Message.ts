@@ -48,6 +48,14 @@ const parseURL = (url) => {
             image: url
         }
     }
+    // is a facebook video [TODO: too raw!] 
+    if (url.match(/https:\/\/www.facebook.com\/[^\/]*\/videos\/.*$/) != null) {
+        return {
+            text: 'Un bel video partirà quando meno te lo aspetti.',
+            embed: `https://www.facebook.com/plugins/video.php?href=${url}&show_text=0&height=200&autoplay=1`
+        }
+    }
+    // https://www.facebook.com/interestingengineering/videos/1805472102855819/?hc_ref=ARRptOneuxMq_OoZw2i3vmzJifu9Wbrl5ddjOhBb-BNWF-1PEQzfYsMEBuMxUXfeSYs
     return {
         url: url,
         text: 'Un link? Chissà cosa sarà!'
