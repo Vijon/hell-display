@@ -19,8 +19,8 @@ bot.on('message', async (msg) => {
         title: 'Hell Display',
         body: message.text,
         image: message.image || null,
-        icon: 'https://hell.vijon.it/favicon/favicon-96x96.png',
-        badge: 'https://hell.vijon.it/favicon/android-icon-36x36.png',
+        icon: `${Config.url}favicon/favicon-96x96.png`,
+        badge: `${Config.url}favicon/android-icon-36x36.png`,
     })
 });
 

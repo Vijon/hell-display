@@ -13,9 +13,10 @@ const config = {
         key: process.env.SSL_KEY || null,
         cert: process.env.SSL_CERT || null
     },
+    url: process.env.PUBLIC_URL || null,
     push: {
         web: {
-            mail: process.env.WEB_PUSH_MAIL || 'info@vijon.it',
+            mail: process.env.WEB_PUSH_MAIL || null,
             publicKey: process.env.WEB_PUSH_PUBLIC_VAPID_KEY || null,
             privateKey: process.env.WEB_PUSH_PRIVATE_VAPID_KEY || null
         }
