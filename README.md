@@ -1,5 +1,7 @@
 # Hell Display #
 
+## Overview ##
+
 This experiment comes from a vision: a screen powered by a community that can display and automatically reproduce the various types of content: audio, video, photos, text ...
 
 Of course there is no moderation or censorship, so the danger of incurring into inappropriate content is very high. 
@@ -11,6 +13,10 @@ Once the development of the SPA was finished I thought of packaging everything i
 
 ***
 
+# Hell Display #
+
+## Panoramica ##
+
 Questo esperimento nasce da una visione: uno schermo che viene alimentato da una community visualizzando e riproducendo in automatico le varie tipologie di contenuti: audio, video, foto, testo...
 
 Naturalmente non è prevista una moderazione o censura, quindi il pericolo di incorrere in materiale sconveniente è altissimo.
@@ -21,6 +27,7 @@ I contenuti vengono "lanciati" tramite Telegram. E' stato costruito infatti un b
 Una volta finito lo sviluppo della SPA ho pensato di pacchettizzare il tutto in una PWA desktop per permettere di installare l'applicazione. Ho inoltre implementato la gestione delle web push notification.
 
 ***
+## Tech ##
 
 * COMPILING  
   * Typescript
