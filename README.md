@@ -1,5 +1,8 @@
 # Hell Display #
 
+- [Use app](http://hell.vijon.it/)
+- [Go to bot](https://telegram.me/HellDisplayBot)
+
 ## Overview ##
 
 This experiment comes from a vision: a screen powered by a community that can display and automatically reproduce the various types of content: audio, video, photos, text ...
