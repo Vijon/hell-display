@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    build: ./client/
+    image: hell-display_app
+    expose:
+      - 80
+    environment:
+      VIRTUAL_HOST: ${NGINX_DOMAIN}
+      LETSENCRYPT_HOST: ${NGINX_DOMAIN}
+      LETSENCRYPT_EMAIL: ${NGINX_EMAIL}
+    
+  server:
+    build: ./server/
+    image: hell-display_server
+    expose:
+      - 3001
+      - 3002
+    environment:
+      API_HOST: ${NGINX_DOMAIN}
+      API_PORTS: 3001,3002
+
+networks:
+    default:
+        external:
+            name: nginx-proxy
