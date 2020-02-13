@@ -14,8 +14,8 @@ services:
     build: ./server/
     image: hell-display_server
     expose:
-      - 3001
-      - 3002
+      - 4001
+      - 5001
     environment:
       API_HOST: ${NGINX_DOMAIN}
       API_PORTS: 3001,3002

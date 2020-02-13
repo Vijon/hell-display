@@ -19,7 +19,7 @@ export const start = ( config ) => {
     
     server = Web.createServer(config);
     server.listen(config.port.web);
-    console.log(`http listening on ${config.port.web}`);
+    console.log(`notification webhook listening on ${config.port.web}`);
     
     server.on('request', function (req, res) {
         req;

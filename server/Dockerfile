@@ -18,8 +18,12 @@ RUN npm install --production
 COPY ./ ./
 
 # Expose the listening port
-EXPOSE 3001
-EXPOSE 3002
+EXPOSE 4001
+EXPOSE 5001
+
+# Run container as non-root (unprivileged) user
+# The node user is provided in the Node.js Alpine base image
+USER node
 
 # Run npm start script with PM2 when container starts
 CMD [ "pm2-runtime", "npm", "--", "start" ]

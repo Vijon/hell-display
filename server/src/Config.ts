@@ -5,8 +5,8 @@ dotenv.config();
 const config = {
     host: process.env.HOST || 'localhost',
     port: {
-        web: process.env.PORT_WEB || 3002,
-        socket: process.env.PORT_SOCKET || 3001,
+        web: process.env.PORT_WEB || 4001,
+        socket: process.env.PORT_SOCKET || 5001,
     },
     bot: process.env.TELEGRAM_BOT || '',
     ssl: {
