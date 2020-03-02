@@ -1,6 +1,6 @@
 # Hell Display #
 
-- [Use app](http://hell.vijon.it/)
+- [Use app](https://hell.vijon.it/)
 - [Go to bot](https://telegram.me/HellDisplayBot)
 
 ## Overview ##
@@ -17,6 +17,9 @@ Once the development of the SPA was finished I thought of packaging everything i
 ***
 
 # Hell Display #
+
+- [Vai all'app](https://hell.vijon.it/)
+- [Usa il bot](https://telegram.me/HellDisplayBot)
 
 ## Panoramica ##
 
