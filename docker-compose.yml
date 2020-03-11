@@ -18,6 +18,8 @@ services:
     expose:
       - 4001
       - 5001
+    volumes:
+      - certs:/etc/nginx/certs:ro
     environment:
       API_HOST: ${NGINX_DOMAIN}
       API_PORTS: 4001,5001
@@ -26,3 +28,8 @@ networks:
     default:
         external:
             name: nginx-proxy
+
+volumes:
+  certs:
+    external:
+      name:  nginx-proxy_certs
