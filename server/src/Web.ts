@@ -7,21 +7,28 @@ import * as Rx from "rxjs";
 var server, io, stream, spreaded;
 var users = 0;
 
-export const createServer = ( config ) => {
+export const createServer = ( config, cb = (req, res) => { req; res; } ) => {
     if (config.ssl.key) {
         const options = {
             key: fs.readFileSync(config.ssl.key),
             cert: fs.readFileSync(config.ssl.cert)
         };
-        server = https.createServer(options);
+        server = https.createServer(options, cb);
     } else {
-        server = http.createServer();
+        server = http.createServer(cb);
     }
+    server.keepAliveTimeout = 61 * 1000;
+    server.on('connection', function(socket) {
+        socket.setTimeout(10000);
+    });
     return server;
 }
 
 export const start = ( config ) => {
-    server = createServer( config );
+    server = createServer( config, (req, res) => {
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end(`req: ${req.url}`);
+    } );
     
     io = Socket(server);
     stream = new Rx.Subject();
