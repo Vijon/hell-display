@@ -21,4 +21,4 @@ COPY ./ ./
 RUN npm run build
 
 # Run npm start script with PM2 when container starts
-CMD [ "npx", "serve", "build", "--listen", "80" ]
+CMD [ "npx", "serve", "build", "-s", "--listen", "80" ]
