@@ -4,17 +4,23 @@ import * as fs from "fs";
 import * as Socket from "socket.io";
 import * as Rx from "rxjs";
 
-var server, io, stream, spreaded;
+var server, isHttps, io, stream, spreaded;
 var users = 0;
 
 export const createServer = ( config, cb = (req, res) => { req; res; } ) => {
     if (config.ssl.key) {
-        const options = {
-            key: fs.readFileSync(config.ssl.key),
-            cert: fs.readFileSync(config.ssl.cert)
-        };
-        server = https.createServer(options, cb);
-    } else {
+        try {
+            const options = {
+                key: fs.readFileSync(config.ssl.key),
+                cert: fs.readFileSync(config.ssl.cert)
+            };
+            server = https.createServer(options, cb);
+            isHttps = true;
+        } catch(e) {
+            console.log(`SSL Certificates not found`)
+        }
+    }
+    if (!isHttps) {
         server = http.createServer(cb);
     }
     server.keepAliveTimeout = 61 * 1000;
