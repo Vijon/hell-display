@@ -23,7 +23,7 @@ services:
     environment:
       API_HOST: ${NGINX_DOMAIN}
       API_PORTS: 4001,5001
-      API_HTTPS: "true"
+      API_HTTPS: 4001,5001
 
 networks:
     default:
